@@ -1,2 +1,2 @@
-# Flappy Bird NCM
+# Furious Felines
  Flappy CS 316

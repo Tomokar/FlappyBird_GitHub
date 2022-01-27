@@ -34,9 +34,12 @@ public class Bord : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        anim.SetTrigger("Die");
-        Rb2d.velocity = Vector2.zero;
-        isDead = true;
-        GameControl.instance.BirdDied();
+        if (other.gameObject.tag == "Ground")
+        {
+            anim.SetTrigger("Die");
+            Rb2d.velocity = Vector2.zero;
+            isDead = true;
+            GameControl.instance.BirdDied();
+        }
     }
 }

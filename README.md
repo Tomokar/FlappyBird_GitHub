@@ -1,2 +1,2 @@
 # Furious Felines
- Flappy CS 316
+ Flappy Bird for CS 316

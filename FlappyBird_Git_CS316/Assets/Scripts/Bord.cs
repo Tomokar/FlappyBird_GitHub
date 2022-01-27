@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class Bord : MonoBehaviour
 {
-    public float flapPower = 100f;
+    public float flapPower = 1f;
 
     private bool isDead = false;
     private Rigidbody2D Rb2d;
     private Animator anim;
 
-    // Start is called before the first frame update
+    [SerializeField] private int Lives = 3;
+
     void Start()
     {
         Rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isDead == false)
@@ -27,7 +27,7 @@ public class Bord : MonoBehaviour
             {
                 anim.SetTrigger("Flap");
                 Rb2d.velocity = Vector2.zero;
-                Rb2d.AddForce(new Vector2(0, flapPower));
+                Rb2d.AddForce(new Vector2(0, (flapPower * 100)));
             }
         }
     }

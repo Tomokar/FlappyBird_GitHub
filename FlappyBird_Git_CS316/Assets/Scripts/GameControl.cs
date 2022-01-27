@@ -11,13 +11,11 @@ public class GameControl : MonoBehaviour
     [SerializeField] GameObject gameOverText;
 
     public bool gameOver = false;
-    public float scrollSpeed = -1.5f;
 
     private int score = 0;
 
     public Text scoreText;
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance == null)
@@ -30,7 +28,6 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (gameOver == true && Input.GetButtonDown("Flap"))

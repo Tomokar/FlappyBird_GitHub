@@ -10,16 +10,27 @@ public class Bord : MonoBehaviour
     private bool isDead = false;
     private Rigidbody2D Rb2d;
     private Animator anim;
-    private PolygonCollider2D polyCol;
+    //private PolygonCollider2D polyCol;
 
-    [SerializeField] private int Lives = 3;
+    private bool phaseActive = false;
+
+    private SpriteRenderer activeSprite;
+
+    [SerializeField] Sprite normal;
+    [SerializeField] Sprite phasing;
+
+    private PolygonCollider2D columnCol1;
+    private PolygonCollider2D columnCol2;
+
+    [SerializeField] public int Lives = 3;
     [SerializeField] private HeartBar hpBar;
 
     void Start()
     {
         Rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        polyCol = GetComponent<PolygonCollider2D>();
+        activeSprite = GetComponent<SpriteRenderer>();
+        //polyCol = GetComponent<PolygonCollider2D>();
     }
 
     void Update()
@@ -28,7 +39,14 @@ public class Bord : MonoBehaviour
         {
             if (Input.GetButtonDown("Flap"))
             {
-                anim.SetTrigger("Flap");
+                if (phaseActive == true)
+                {
+                    anim.SetTrigger("phaseFlap");
+                }
+                else
+                {
+                    anim.SetTrigger("Flap");
+                }
                 Rb2d.velocity = Vector2.zero;
                 Rb2d.AddForce(new Vector2(0, (flapPower * 100)));
             }
@@ -46,6 +64,12 @@ public class Bord : MonoBehaviour
         }
         else if (other.gameObject.tag == "Column")
         {
+            if (Lives > 1)
+            {
+                columnCol1 = other.gameObject.transform.GetChild(0).GetComponent<PolygonCollider2D>();
+                columnCol2 = other.gameObject.transform.GetChild(1).GetComponent<PolygonCollider2D>();
+            }
+            //Debug.Log(other.gameObject.transform.GetChild(0));
             if (Lives == 1)
             {
                 anim.SetTrigger("Die");
@@ -67,12 +91,26 @@ public class Bord : MonoBehaviour
 
     IEnumerator goPhase()
     {
-        polyCol.enabled = false;
+        //polyCol.enabled = false;
         //Rb2d.simulated = false;
 
-        yield return new WaitForSeconds(2f);
+        //activeSprite.sprite = phasing;
 
-        polyCol.enabled = true;
-        Rb2d.simulated = true;
+        phaseActive = true;
+        anim.SetBool("phaseActive", true);
+        columnCol1.enabled = false;
+        columnCol2.enabled = false;
+
+        yield return new WaitForSeconds(2.5f);
+
+        //polyCol.enabled = true;
+        //Rb2d.simulated = true;
+
+        //activeSprite.sprite = normal;
+
+        phaseActive = false;
+        anim.SetBool("phaseActive", false);
+        columnCol1.enabled = true;
+        columnCol2.enabled = true;
     }
 }

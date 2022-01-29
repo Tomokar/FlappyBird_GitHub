@@ -355,6 +355,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 1368425709}
+  healthBar: {fileID: 1386399709}
+  playControl: {fileID: 1386399704}
   gameOver: 0
   scoreText: {fileID: 1885997018}
 --- !u!114 &593795340
@@ -1240,6 +1242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flapPower: 2
+  normal: {fileID: 21300000, guid: b1673b366019fd245b7a9c92e10190ab, type: 3}
+  phasing: {fileID: 21300000, guid: 82f481257fd8e59478a5f7f13603b16a, type: 3}
   Lives: 3
   hpBar: {fileID: 1386399709}
 --- !u!60 &1386399705
@@ -2020,6 +2024,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flapPower: 200
+  normal: {fileID: 0}
+  phasing: {fileID: 0}
   Lives: 3
   hpBar: {fileID: 0}
 --- !u!95 &2053466807

@@ -9,6 +9,8 @@ public class GameControl : MonoBehaviour
     public static GameControl instance;
 
     [SerializeField] GameObject gameOverText;
+    [SerializeField] HeartBar healthBar;
+    [SerializeField] Bord playControl;
 
     public bool gameOver = false;
 
@@ -49,6 +51,8 @@ public class GameControl : MonoBehaviour
 
     public void BirdDied()
     {
+        healthBar.health = 0;
+        playControl.Lives = 0;
         gameOverText.SetActive(true);
         gameOver = true;
     }

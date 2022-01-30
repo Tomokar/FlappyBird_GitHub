@@ -16,9 +16,6 @@ public class Bord : MonoBehaviour
 
     private SpriteRenderer activeSprite;
 
-    [SerializeField] Sprite normal;
-    [SerializeField] Sprite phasing;
-
     private PolygonCollider2D columnCol1;
     private PolygonCollider2D columnCol2;
 
@@ -30,7 +27,6 @@ public class Bord : MonoBehaviour
         Rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         activeSprite = GetComponent<SpriteRenderer>();
-        //polyCol = GetComponent<PolygonCollider2D>();
     }
 
     void Update()
@@ -69,7 +65,7 @@ public class Bord : MonoBehaviour
                 columnCol1 = other.gameObject.transform.GetChild(0).GetComponent<PolygonCollider2D>();
                 columnCol2 = other.gameObject.transform.GetChild(1).GetComponent<PolygonCollider2D>();
             }
-            //Debug.Log(other.gameObject.transform.GetChild(0));
+
             if (Lives == 1)
             {
                 anim.SetTrigger("Die");
@@ -91,22 +87,12 @@ public class Bord : MonoBehaviour
 
     IEnumerator goPhase()
     {
-        //polyCol.enabled = false;
-        //Rb2d.simulated = false;
-
-        //activeSprite.sprite = phasing;
-
         phaseActive = true;
         anim.SetBool("phaseActive", true);
         columnCol1.enabled = false;
         columnCol2.enabled = false;
 
         yield return new WaitForSeconds(2.5f);
-
-        //polyCol.enabled = true;
-        //Rb2d.simulated = true;
-
-        //activeSprite.sprite = normal;
 
         phaseActive = false;
         anim.SetBool("phaseActive", false);

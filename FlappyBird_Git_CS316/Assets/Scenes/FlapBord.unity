@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917714a925da844478aedfdf46011169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caveTransform: {fileID: 932537906}
+  caveTransform: {fileID: 0}
 --- !u!1 &639536558
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917714a925da844478aedfdf46011169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caveTransform: {fileID: 1803049443}
+  caveTransform: {fileID: 0}
 --- !u!1 &705704765
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +879,7 @@ GameObject:
   - component: {fileID: 932537907}
   - component: {fileID: 932537908}
   - component: {fileID: 932537909}
+  - component: {fileID: 932537910}
   m_Layer: 0
   m_Name: CaveBackgroundClone
   m_TagString: Untagged
@@ -985,6 +986,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &932537910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932537905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917714a925da844478aedfdf46011169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caveTransform: {fileID: 932537906}
 --- !u!1 &1088713926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,6 +1677,7 @@ GameObject:
   - component: {fileID: 1803049444}
   - component: {fileID: 1803049445}
   - component: {fileID: 1803049446}
+  - component: {fileID: 1803049447}
   m_Layer: 0
   m_Name: CaveBackground
   m_TagString: Untagged
@@ -1769,6 +1784,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1803049447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803049442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917714a925da844478aedfdf46011169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caveTransform: {fileID: 1803049443}
 --- !u!1 &1885997015
 GameObject:
   m_ObjectHideFlags: 0

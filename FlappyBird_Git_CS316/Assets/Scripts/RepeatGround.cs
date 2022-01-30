@@ -15,16 +15,35 @@ public class RepeatGround : MonoBehaviour
     void Start()
     {
         groundCollider = GetComponent<BoxCollider2D>();
-        caveImage = caveTransform.GetComponent<SpriteRenderer>();
-        groundWidth = groundCollider.size.x;
-        caveWidth = caveImage.size.x;
+
+        if (groundCollider != null)
+        {
+            groundWidth = groundCollider.size.x;
+        }
+
+        if (caveTransform != null)
+        {
+            caveImage = caveTransform.GetComponent<SpriteRenderer>();
+            caveWidth = caveImage.size.x;
+        }
     }
 
     void Update()
     {
-        if (transform.position.x < -groundWidth)
+        if (groundCollider != null)
         {
-            moveGround();
+            if (transform.position.x < -groundWidth)
+            {
+                moveGround();
+            }
+        }
+
+        if (caveTransform != null)
+        {
+            if (caveTransform.position.x < -caveWidth)
+            {
+                moveCave();
+            }
         }
     }
 

@@ -35,6 +35,8 @@ public class Bord : MonoBehaviour
         {
             if (Input.GetButtonDown("Flap"))
             {
+                FindObjectOfType<AudioManager>().Play("Flap");
+
                 if (phaseActive == true)
                 {
                     anim.SetTrigger("phaseFlap");
@@ -51,14 +53,7 @@ public class Bord : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
-        {
-            anim.SetTrigger("Die");
-            Rb2d.velocity = Vector2.zero;
-            isDead = true;
-            GameControl.instance.BirdDied();
-        }
-        else if (other.gameObject.tag == "Column")
+        if (other.gameObject.tag == "Column")
         {
             if (Lives > 1)
             {
@@ -68,6 +63,7 @@ public class Bord : MonoBehaviour
 
             if (Lives == 1)
             {
+                FindObjectOfType<AudioManager>().Play("Death");
                 anim.SetTrigger("Die");
                 Rb2d.velocity = Vector2.zero;
                 isDead = true;
@@ -75,13 +71,23 @@ public class Bord : MonoBehaviour
                 Lives--;
                 GameControl.instance.BirdDied();
             }
+
             else
             {
+                FindObjectOfType<AudioManager>().Play("Hurt");
                 hpBar.health--;
                 Lives--;
 
                 StartCoroutine(goPhase());
             }
+        }
+        else //if (other.gameObject.tag == "Ground")
+        {
+            FindObjectOfType<AudioManager>().Play("Death");
+            anim.SetTrigger("Die");
+            Rb2d.velocity = Vector2.zero;
+            isDead = true;
+            GameControl.instance.BirdDied();
         }
     }
 

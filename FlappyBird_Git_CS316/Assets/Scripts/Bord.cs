@@ -51,7 +51,7 @@ public class Bord : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    IEnumerator OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Column")
         {
@@ -74,14 +74,24 @@ public class Bord : MonoBehaviour
 
             else
             {
+                columnCol1.enabled = false;
+                columnCol2.enabled = false;
+                phaseActive = true;
+                anim.SetBool("phaseActive", true);
+
                 FindObjectOfType<AudioManager>().Play("Hurt");
                 hpBar.health--;
                 Lives--;
 
-                StartCoroutine(goPhase());
+                yield return new WaitForSeconds(2.5f);
+
+                columnCol1.enabled = true;
+                columnCol2.enabled = true;
+                phaseActive = false;
+                anim.SetBool("phaseActive", false);
             }
         }
-        else //if (other.gameObject.tag == "Ground")
+        else
         {
             FindObjectOfType<AudioManager>().Play("Death");
             anim.SetTrigger("Die");
@@ -89,20 +99,5 @@ public class Bord : MonoBehaviour
             isDead = true;
             GameControl.instance.BirdDied();
         }
-    }
-
-    IEnumerator goPhase()
-    {
-        phaseActive = true;
-        anim.SetBool("phaseActive", true);
-        columnCol1.enabled = false;
-        columnCol2.enabled = false;
-
-        yield return new WaitForSeconds(2.5f);
-
-        phaseActive = false;
-        anim.SetBool("phaseActive", false);
-        columnCol1.enabled = true;
-        columnCol2.enabled = true;
     }
 }
